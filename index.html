@@ -1,10 +1,9 @@
-<!-- 新建 HTML，可通过预览按钮查看效果 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>PC28 极致精准杀号矩阵版</title>
+<title>PC28 绝对共振极限杀号版</title>
 <style>
 :root{
   --bg:#f2f4f8;--card:#ffffff;--card-2:#f8fafc;
@@ -147,7 +146,7 @@ th{color:var(--text-dim);font-weight:600}
 <body>
 
 <div class="card">
-  <h1><span class="logo-dot"></span>PC28 极致精准杀号矩阵版 <span class="k-badge" id="kDisplay">v26-KillMaster</span></h1>
+  <h1><span class="logo-dot"></span>PC28 绝对共振极限杀号版 <span class="k-badge" id="kDisplay">v27-AbsoluteConsensus</span></h1>
   <div class="row">
     <span class="label">状态</span>
     <span class="value"><span class="pulse"></span><span id="statusText">初始化</span></span>
@@ -193,20 +192,20 @@ th{color:var(--text-dim);font-weight:600}
 
 <div class="card">
   <h2>
-    <span class="h2-title" style="color:#ef4444;font-weight:800">🎯 本期杀号推荐</span>
+    <span class="h2-title" style="color:#ef4444;font-weight:800">🎯 本期极速杀号推荐</span>
     <button class="btn btn-copy" id="copyBtn" onclick="copyPrediction()">📋 复制</button>
   </h2>
   <div class="pred-line" id="predLine">
     <span class="item"><span class="issue-tag" id="nextIssueLabel">-期</span></span>
     <span class="item"><span class="kill-badge-text" id="killTargetText">杀：-</span></span>
   </div>
-  <div style="text-align:center;margin-top:2px;font-size:11px;color:var(--text-dim)">✨ 零观望期 · 多维马尔可夫矩阵逆向排除 · 胜率至上</div>
+  <div style="text-align:center;margin-top:2px;font-size:11px;color:var(--text-dim)">🔥 三重共振投票模型 · 零观望期 · 胜率至上极限压测</div>
 </div>
 
 <div class="tab-bar">
   <div class="tab active" data-tab="trend" onclick="switchTab('trend')">走势图</div>
-  <div class="tab" data-tab="metrics" onclick="switchTab('metrics')">杀号维值明细</div>
-  <div class="tab" data-tab="history" onclick="switchTab('history')">杀号战绩记录</div>
+  <div class="tab" data-tab="metrics" onclick="switchTab('metrics')">多维共振明细</div>
+  <div class="tab" data-tab="history" onclick="switchTab('history')">战绩复盘</div>
 </div>
 
 <div class="tab-content active" id="tab-trend">
@@ -229,25 +228,25 @@ th{color:var(--text-dim);font-weight:600}
 
 <div class="tab-content" id="tab-metrics">
   <div class="card">
-    <h2>组合活跃度与杀号评分明细</h2>
+    <h2>组合三维共振得分明细</h2>
     <table id="metricsTable">
       <thead>
         <tr>
           <th>组合</th>
-          <th>综合活跃分 (越低越被杀)</th>
-          <th>状态评估</th>
+          <th>三维综合共振分 (越低越被精准杀)</th>
+          <th>评估状态</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
     <div style="margin-top:10px;padding:8px;background:#f8fafc;border-radius:8px;font-size:11px;color:var(--text-dim);line-height:1.7">
-      <b style="color:var(--text-2)">杀号逻辑说明：</b><br>
-      • 综合评分垫底(得分最低)的组合即被判定为本期死角，系统直接执行**杀号推荐**。<br>
-      • 算法融合：二阶马尔可夫演化概率 (50%) + 短期热度动量 (35%) + 均值回归势能 (15%)。
+      <b style="color:var(--text-2)">共振杀号核心：</b><br>
+      • 得分垫底的组合将触发共振警报，作为本期唯一必杀目标。<br>
+      • 融合了二阶状态转移概率 (40%) + 超短期动量衰减 (40%) + 均值回归反噬势能 (20%)。
     </div>
   </div>
   <div class="card">
-    <h2>4大组合评估卡片</h2>
+    <h2>4大组合状态卡片</h2>
     <div class="metrics-grid" id="metricBoxes"></div>
   </div>
 </div>
@@ -265,7 +264,7 @@ th{color:var(--text-dim);font-weight:600}
             <th>实际开奖</th>
             <th>预测杀号</th>
             <th>形态</th>
-            <th>杀号结果</th>
+            <th>战绩结果</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -340,7 +339,7 @@ function comboClass(combo){
 /* ================================================================
    IndexedDB
    ================================================================ */
-const DB_NAME='pc28_v26_kill',DB_VER=1;let db=null;
+const DB_NAME='pc28_v27_consensus',DB_VER=1;let db=null;
 function openDB(){return new Promise((resolve,reject)=>{
   const req=indexedDB.open(DB_NAME,DB_VER);
   req.onupgradeneeded=e=>{const d=e.target.result;
@@ -447,7 +446,7 @@ function renderCountdown(){
 function startCountdownLoop(){setInterval(renderCountdown,200);}
 
 /* ================================================================
-   ★ 极致精准杀号算法核心 (v26-KillMaster)
+   ★ 终极多维共振极限杀号算法 (v27-AbsoluteConsensus)
    ================================================================ */
 function runAlgorithm(seq) {
     const categories = ['大双', '大单', '小双', '小单'];
@@ -459,7 +458,7 @@ function runAlgorithm(seq) {
         return { kill: categories[0], ranked: categories, scores };
     }
 
-    // 1. 二阶马尔可夫转移得分 (权重 50%)
+    // 1. 二阶马尔可夫演化概率 (权重 40%)
     const last1 = seq[N-1];
     const last2 = seq[N-2];
     let trans1 = {}, trans2 = {};
@@ -473,22 +472,22 @@ function runAlgorithm(seq) {
 
     const markovScore = {};
     categories.forEach(c => {
-        markovScore[c] = 0.6 * (trans1[c] / sum1) + 0.4 * (trans2[c] / sum2);
+        markovScore[c] = 0.5 * (trans1[c] / sum1) + 0.5 * (trans2[c] / sum2);
     });
 
-    // 2. 短期 EWMA 动量权重 (最近 15 期，权重 35%)
-    const shortWindow = seq.slice(-15);
+    // 2. 超短期高频动量衰减 (最近 10 期，权重 40%)
+    const shortWindow = seq.slice(-10);
     const mom = {};
     categories.forEach(c => mom[c] = 0.1);
     shortWindow.forEach((item, idx) => {
-        const w = Math.pow(0.9, 15 - idx);
+        const w = Math.pow(0.85, 10 - idx); // 越接近当前期权重越高
         mom[item] += w;
     });
     const momTotal = Object.values(mom).reduce((a,b)=>a+b, 0);
     const momScore = {};
     categories.forEach(c => momScore[c] = mom[c] / momTotal);
 
-    // 3. 均值回归遗漏势能 (权重 15%)
+    // 3. 均值回归反噬势能 (权重 20%)
     const omission = {};
     categories.forEach(c => {
         let idx = -1;
@@ -501,13 +500,13 @@ function runAlgorithm(seq) {
     const omScore = {};
     categories.forEach(c => omScore[c] = Math.min(omission[c] / maxOm, 1.0));
 
-    // 4. 综合力量得分(得分越高说明越活跃、越安全；得分最低的即为最弱势、最应被"杀"的目标)
+    // 4. 三维共振加权总分（分数越低，代表该组合在三大模型中同时被判定为最弱势、最应当被杀）
     const scores = {};
     categories.forEach(c => {
-        scores[c] = 0.50 * markovScore[c] + 0.35 * momScore[c] + 0.15 * omScore[c];
+        scores[c] = 0.40 * markovScore[c] + 0.40 * momScore[c] + 0.20 * omScore[c];
     });
 
-    // 排序：升序排列，排在最前面的就是得分最低、最应该被杀掉的组合
+    // 升序排列：排在最前面的就是全网综合判定得分最低的唯一必杀目标
     const ranked = [...categories].sort((a, b) => scores[a] - scores[b]);
     const killTarget = ranked[0];
 
@@ -519,7 +518,7 @@ function runAlgorithm(seq) {
 }
 
 /* ================================================================
-   历史重建
+   历史战绩重建
    ================================================================ */
 async function rebuildHistoryFromDraws(){
   const allDraws = await dbGetAll('draws');
@@ -548,7 +547,6 @@ async function rebuildHistoryFromDraws(){
     if (!pred) continue;
 
     const actual = asc[k].combo;
-    // 杀号命中判断：如果实际开奖结果 != 杀号推荐，说明杀对了 (Hit = 1)；如果实际开奖结果 == 杀号推荐，说明杀错了 (Hit = 0)
     const isHit = (actual !== pred.kill) ? 1 : 0;
 
     newPreds.push({
@@ -933,31 +931,29 @@ function renderPrediction(pred){
   document.getElementById('nextIssueLabel').textContent = nextIssue + '期';
   document.getElementById('killTargetText').textContent = '杀：' + pred.kill;
 
-  // 渲染评分明细表(按得分从低到高排列，第一个即为被杀目标)
   const tbody = document.querySelector('#metricsTable tbody');
   tbody.innerHTML = '';
   pred.ranked.forEach((c, idx) => {
     const scoreVal = pred.scores[c] !== undefined ? pred.scores[c].toFixed(4) : '-';
     const tr = document.createElement('tr');
     if (idx === 0) {
-      tr.style.background = '#fee2e2'; // 标记被杀的目标
+      tr.style.background = '#fee2e2';
     }
     tr.innerHTML = `
       <td><b>${c}</b></td>
       <td class="num" style="font-weight:800;color:${idx === 0 ? '#dc2626' : '#4f46e5'}">${scoreVal}</td>
-      <td>${idx === 0 ? '<span style="color:#dc2626;font-weight:900;">🔥 锁定杀号</span>' : `安全 (第${idx+1}强)`}</td>
+      <td>${idx === 0 ? '<span style="color:#dc2626;font-weight:900;">🔥 共振锁定必杀</span>' : `安全防护 (强度${idx+1})`}</td>
     `;
     tbody.appendChild(tr);
   });
 
-  // 4 个状态评估卡片
   const boxes = document.getElementById('metricBoxes');
   boxes.innerHTML = '';
   pred.ranked.forEach((c, idx) => {
     const scoreVal = pred.scores[c] !== undefined ? (pred.scores[c] * 100).toFixed(1) + '%' : '-';
     const div = document.createElement('div');
     div.className = 'metric-box' + (idx === 0 ? ' kill-target' : '');
-    const tag = idx === 0 ? '❌ 本期主杀目标' : `🛡️ 安全区 (级${idx})`;
+    const tag = idx === 0 ? '❌ 本期核心杀号' : `🛡️ 安全区 (级${idx})`;
     div.innerHTML = `
       <div class="mv">${scoreVal}</div>
       <div class="ml">${c} · ${tag}</div>
