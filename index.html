@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>PC28 量子态高准度杀号版</title>
+<title>PC28 枢纽边界高准度杀号版</title>
 <style>
 :root{
   --bg:#f2f4f8;--card:#ffffff;--card-2:#f8fafc;
@@ -146,7 +146,7 @@ th{color:var(--text-dim);font-weight:600}
 <body>
 
 <div class="card">
-  <h1><span class="logo-dot"></span>PC28 量子态高准度杀号版 <span class="k-badge" id="kDisplay">v27-QuantumKill</span></h1>
+  <h1><span class="logo-dot"></span>PC28 枢纽边界高准度杀号版 <span class="k-badge" id="kDisplay">v30-CoreMatrix</span></h1>
   <div class="row">
     <span class="label">状态</span>
     <span class="value"><span class="pulse"></span><span id="statusText">初始化</span></span>
@@ -192,19 +192,19 @@ th{color:var(--text-dim);font-weight:600}
 
 <div class="card">
   <h2>
-    <span class="h2-title" style="color:#ef4444;font-weight:800">🎯 本期高准度杀号推荐</span>
+    <span class="h2-title" style="color:#ef4444;font-weight:800">🎯 本期13-14枢纽边界杀号推荐</span>
     <button class="btn btn-copy" id="copyBtn" onclick="copyPrediction()">📋 复制</button>
   </h2>
   <div class="pred-line" id="predLine">
     <span class="item"><span class="issue-tag" id="nextIssueLabel">-期</span></span>
     <span class="item"><span class="kill-badge-text" id="killTargetText">杀：-</span></span>
   </div>
-  <div style="text-align:center;margin-top:2px;font-size:11px;color:var(--text-dim)">⚡ 量子态瞬时反转引擎 · 零观望 · 目标85%+超高胜率</div>
+  <div style="text-align:center;margin-top:2px;font-size:11px;color:var(--text-dim)" id="matrixSubText">⚡ 13-14枢纽边界矩阵：零观望·全天候高精准锁定...</div>
 </div>
 
 <div class="tab-bar">
   <div class="tab active" data-tab="trend" onclick="switchTab('trend')">走势图</div>
-  <div class="tab" data-tab="metrics" onclick="switchTab('metrics')">量子势能明细</div>
+  <div class="tab" data-tab="metrics" onclick="switchTab('metrics')">枢纽边界与势能明细</div>
   <div class="tab" data-tab="history" onclick="switchTab('history')">杀号战绩复盘</div>
 </div>
 
@@ -228,25 +228,25 @@ th{color:var(--text-dim);font-weight:600}
 
 <div class="tab-content" id="tab-metrics">
   <div class="card">
-    <h2>组合量子势能评估明细 (得分最低者即被杀)</h2>
+    <h2>13-14 枢纽边界与势能明细</h2>
     <table id="metricsTable">
       <thead>
         <tr>
           <th>组合</th>
-          <th>量子综合势能</th>
-          <th>评级与状态</th>
+          <th>枢纽边界势能分</th>
+          <th>状态与保护说明</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
     <div style="margin-top:10px;padding:8px;background:#f8fafc;border-radius:8px;font-size:11px;color:var(--text-dim);line-height:1.7">
-      <b style="color:var(--text-2)">高准度杀号核心原则：</b><br>
-      • 抛弃长期滞后统计，聚焦最近 12 期的**微观震荡频率与瞬时反转阈值**。<br>
-      • 势能垫底的组合判定为高风险死角，强制输出杀号指令。
+      <b style="color:var(--text-2)">v30 核心机制：</b><br>
+      • **13-14 枢纽判定**：实时锚定和值边界，对处于保本对冲交界处的组合实施结构性保护。<br>
+      • **零观望强力杀号**：在确保核心对冲组合安全的前提下，严厉打击势能断层的死角。
     </div>
   </div>
   <div class="card">
-    <h2>4大组合势能卡片</h2>
+    <h2>4大组合状态卡片</h2>
     <div class="metrics-grid" id="metricBoxes"></div>
   </div>
 </div>
@@ -288,7 +288,7 @@ const APIS = [
   { url: 'https://pc28.help/api/kj.json?nbr=100', headers: {} },
 ];
 const COMBOS = ['大双', '大单', '小双', '小单'];
-const WINDOW_SIZE = 40; // 缩短窗口，提升对瞬时盘面的反应灵敏度
+const WINDOW_SIZE = 40;
 const POLL_INTERVAL = 60000;
 const DEFAULT_PERIOD_MS = 210 * 1000;
 const TREND_MAX = 100;
@@ -339,7 +339,7 @@ function comboClass(combo){
 /* ================================================================
    IndexedDB
    ================================================================ */
-const DB_NAME='pc28_v27_quantum',DB_VER=1;let db=null;
+const DB_NAME='pc28_v30_core',DB_VER=1;let db=null;
 function openDB(){return new Promise((resolve,reject)=>{
   const req=indexedDB.open(DB_NAME,DB_VER);
   req.onupgradeneeded=e=>{const d=e.target.result;
@@ -446,59 +446,65 @@ function renderCountdown(){
 function startCountdownLoop(){setInterval(renderCountdown,200);}
 
 /* ================================================================
-   ★ 终极量子态高准度杀号核心 (v27-QuantumKill)
+   ★ v30 13-14 枢纽边界与零观望高准度杀号核心算法
    ================================================================ */
-function runAlgorithm(seq) {
+function runAlgorithm(seq, draws) {
     const categories = ['大双', '大单', '小双', '小单'];
     const N = seq ? seq.length : 0;
     
-    if (N < 3) {
+    if (N < 5) {
         const scores = {};
-        categories.forEach(c => scores[c] = 0.25);
+        categories.forEach(c => scores[c] = {score: 0.25, note: 'Init'});
         return { kill: categories[0], ranked: categories, scores };
     }
 
-    // 1. 微观瞬时窗口扫描（最近 12 期），捕获当前极高频热度与过热反转点
-    const microWindow = seq.slice(-12);
-    const microCounts = {};
-    categories.forEach(c => microCounts[c] = 0);
-    microWindow.forEach((item, idx) => {
-        const weight = Math.pow(1.15, idx); // 越靠近当前期权重呈指数级放大
-        if (microCounts[item] !== undefined) microCounts[item] += weight;
+    // 1. 13-14 枢纽边界效应追踪
+    // 检查最近 10 期内，开出和值 13 或 14 的频率（这两个点是大小保本及对冲的黄金中轴线）
+    const recentDraws = draws ? draws.slice(-10) : [];
+    let pivotHits = 0;
+    recentDraws.forEach(d => {
+        if (d.sum_val === 13 || d.sum_val === 14) pivotHits++;
     });
 
-    // 2. 二阶状态转移残差矩阵
-    const last1 = seq[N-1];
-    const last2 = seq[N-2];
-    let transScore = {};
-    categories.forEach(c => transScore[c] = 0.2);
-    
-    let matchCount = 0;
-    for (let i = 0; i < N - 2; i++) {
-        if (seq[i] === last2 && seq[i+1] === last1) {
-            const actualNext = seq[i+2];
-            transScore[actualNext] += 1.5;
-            matchCount++;
-        }
-    }
-    if (matchCount === 0) {
-        // 退化到一阶
-        for (let i = 0; i < N - 1; i++) {
-            if (seq[i] === last1) {
-                transScore[seq[i+1]] += 1.0;
-            }
-        }
-    }
+    // 2. 组合微观遗漏与动量双轨加权
+    const omission = {};
+    const recentCounts = {};
+    categories.forEach(c => { omission[c] = 0; recentCounts[c] = 0; });
 
-    // 3. 瞬时势能综合评分（分值越高代表该组合近期越活跃或正处于正向惯性中；分值最低者即为本期面临坍塌、应被“精准杀掉”的目标）
+    // 统计最近 12 期的频次
+    const recent12 = seq.slice(-12);
+    recent12.forEach((c, idx) => {
+        const weight = Math.pow(1.1, idx);
+        if (recentCounts[c] !== undefined) recentCounts[c] += weight;
+    });
+
+    // 计算绝对遗漏
+    categories.forEach(c => {
+        let idx = -1;
+        for (let i = N - 1; i >= 0; i--) {
+            if (seq[i] === c) { idx = i; break; }
+        }
+        omission[c] = idx === -1 ? N : (N - 1 - idx);
+    });
+
     const scores = {};
     categories.forEach(c => {
-        // 核心公式：55% 瞬时微观权重 + 45% 状态转移残差
-        scores[c] = 0.55 * microCounts[c] + 0.45 * transScore[c];
+        // 核心综合分：平衡遗漏值与近期动量，同时如果当前处于 13-14 枢纽高频期，对处于保本对冲结构的组合给予安全加权
+        let score = (omission[c] * 0.4) + (recentCounts[c] * 6.0);
+        
+        // 如果近期 13-14 频繁出现，微调平衡点，防止误杀核心对冲组合
+        if (pivotHits >= 3 && (c === '小单' || c === '大双')) {
+            score += 5.0; // 提升安全权重
+        }
+
+        scores[c] = {
+            score: Number(score.toFixed(2)),
+            note: pivotHits >= 3 ? '枢纽保本保护' : '常规势能'
+        };
     });
 
-    // 排序：升序排列，排在最前面的就是势能最低、最应当被杀的对象
-    const ranked = [...categories].sort((a, b) => scores[a] - scores[b]);
+    // 排序：升序排列，得分最低的组合即为本期失衡最严重的“死角”，直接作为主杀目标
+    const ranked = [...categories].sort((a, b) => scores[a].score - scores[b].score);
     const killTarget = ranked[0];
 
     return {
@@ -534,11 +540,10 @@ async function rebuildHistoryFromDraws(){
     if (windowDraws.length < MIN_WINDOW) continue;
 
     const seq = windowDraws.map(d => d.combo);
-    const pred = runAlgorithm(seq);
+    const pred = runAlgorithm(seq, windowDraws);
     if (!pred) continue;
 
     const actual = asc[k].combo;
-    // 杀号命中判断：实际结果 != 杀号推荐，即为杀中 (Hit = 1)
     const isHit = (actual !== pred.kill) ? 1 : 0;
 
     newPreds.push({
@@ -748,7 +753,7 @@ async function tick(){
     const seqAll = all.map(d => d.combo);
 
     const recent = seqAll.slice(-WINDOW_SIZE);
-    const pred = runAlgorithm(recent);
+    const pred = runAlgorithm(recent, all);
     if (!pred) { setStatus('分析失败', 'bad'); return; }
     state.currentPred = pred;
     renderPrediction(pred);
@@ -923,19 +928,20 @@ function renderPrediction(pred){
   document.getElementById('nextIssueLabel').textContent = nextIssue + '期';
   document.getElementById('killTargetText').textContent = '杀：' + pred.kill;
 
-  // 渲染评分明细表（排序：得分最低即为主杀目标）
+  // 渲染评分明细表
   const tbody = document.querySelector('#metricsTable tbody');
   tbody.innerHTML = '';
   pred.ranked.forEach((c, idx) => {
-    const scoreVal = pred.scores[c] !== undefined ? pred.scores[c].toFixed(4) : '-';
+    const item = pred.scores[c];
     const tr = document.createElement('tr');
-    if (idx === 0) {
+    if (c === pred.kill) {
       tr.style.background = '#fee2e2';
     }
+    const tag = (c === pred.kill) ? '<span style="color:#dc2626;font-weight:900;">🔥 锁定主杀目标</span>' : `安全区域 (${item.note})`;
     tr.innerHTML = `
       <td><b>${c}</b></td>
-      <td class="num" style="font-weight:800;color:${idx === 0 ? '#dc2626' : '#4f46e5'}">${scoreVal}</td>
-      <td>${idx === 0 ? '<span style="color:#dc2626;font-weight:900;">🔥 锁定主杀目标</span>' : `安全区域 (排名${idx+1})`}</td>
+      <td class="num" style="font-weight:800;color:#4f46e5">${item.score.toFixed(2)}</td>
+      <td>${tag}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -944,12 +950,13 @@ function renderPrediction(pred){
   const boxes = document.getElementById('metricBoxes');
   boxes.innerHTML = '';
   pred.ranked.forEach((c, idx) => {
-    const scoreVal = pred.scores[c] !== undefined ? pred.scores[c].toFixed(2) : '-';
+    const item = pred.scores[c];
     const div = document.createElement('div');
-    div.className = 'metric-box' + (idx === 0 ? ' kill-target' : '');
-    const tag = idx === 0 ? '❌ 本期主杀' : `🛡️ 安全区 (级${idx})`;
+    const isKill = (c === pred.kill);
+    div.className = 'metric-box' + (isKill ? ' kill-target' : '');
+    const tag = isKill ? '❌ 本期主杀' : `🛡️ 安全区`;
     div.innerHTML = `
-      <div class="mv">${scoreVal}</div>
+      <div class="mv">${item.score.toFixed(1)}</div>
       <div class="ml">${c} · ${tag}</div>
     `;
     boxes.appendChild(div);
